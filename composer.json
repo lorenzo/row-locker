@@ -1,0 +1,23 @@
+{
+    "name": "lorenzo/row-locker",
+    "description": "Plugin to lock database rows using the CakePHP ORM",
+    "type": "cakephp-plugin",
+    "require": {
+        "php": ">=5.5",
+        "cakephp/orm": "~3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "RowLocker\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RowLocker\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+        }
+    }
+}
