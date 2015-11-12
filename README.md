@@ -25,9 +25,9 @@ bin/cake plugin load RowLocker
 
 Any table to which oyu wish to apply RowLocker needs to have the following columns:
 
-`locked_time`: `DATETIME`
-`locked_by` (optional) Can be of any type that identify your users (INT, VARCHAR, UUID...)
-`locked_session` (optional) `VARCHAR(100)` Used for debugging purposes
+* `locked_time`: `DATETIME`
+* `locked_by` (optional) Can be of any type that identify your users (INT, VARCHAR, UUID...)
+* `locked_session` (optional) `VARCHAR(100)` Used for debugging purposes
 
 ## Usage
 
