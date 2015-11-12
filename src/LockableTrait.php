@@ -54,7 +54,8 @@ trait LockableTrait
     public function isLocked()
     {
         $now = time();
-        $locked = $this->get('locked_time')->format('U');
+        $locked = $this->get('locked_time');
+        $locked = $locked ? $locked->format('U') : 0;
 
         return $locked && abs($now - $locked) < static::getLockTimeout();
     }
