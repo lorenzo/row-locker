@@ -2,6 +2,7 @@
     "name": "lorenzo/row-locker",
     "description": "Plugin to lock database rows using the CakePHP ORM",
     "type": "cakephp-plugin",
+    "license": "MIT",
     "require": {
         "php": ">=5.5",
         "cakephp/orm": "~3.0"
