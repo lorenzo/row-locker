@@ -90,7 +90,7 @@ $article->unlock();
 $articlesTable->save($article);
 ```
 
-### Finding Unlocker Rows
+### Finding Unlocked Rows
 
 In order to find unlocked rows (or with locks owned by the same user), use the `unlocked` finder:
 
