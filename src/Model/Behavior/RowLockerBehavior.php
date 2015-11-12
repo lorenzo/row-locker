@@ -1,12 +1,12 @@
 <?php
 namespace RowLocker\Model\Behavior;
 
-use Cake\I18n\Time;
 use Cake\ORM\Behavior;
 use Cake\ORM\Query;
 use Cake\ORM\Table;
-use RowLocker\LockableInterface;
 use Cake\Utility\Hash;
+use DateTimeImmutable;
+use RowLocker\LockableInterface;
 
 /**
  * Contains custom finders
@@ -52,7 +52,7 @@ class RowLockerBehavior extends Behavior
             $entityClass = $this->_table->entityClass();
 
             $nullExp = clone $exp;
-            $edge = Time::now()->subSeconds($entityClass::getLockTimeout());
+            $edge = new DateTimeImmutable('@'. time() - $entityClass::getLockTimeout());
             $or = $exp->or_([
                 $nullExp->isNull($timeCol),
                 $exp->lte($timeCol, $edge, 'datetime')

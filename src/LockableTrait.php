@@ -1,7 +1,7 @@
 <?php
 namespace RowLocker;
 
-use Cake\I18n\Time;
+use Cake\Database\Type;
 
 /**
  * Default implementation for LockableInterface
@@ -22,7 +22,7 @@ trait LockableTrait
             throw new LockingException('This entity is already locked');
         }
 
-        $this->set('locked_time', Time::now());
+        $this->set('locked_time', Type::build('datetime')->marshal(time()));
         if ($by !== null) {
             $this->set('locked_by', $by);
         }
@@ -53,9 +53,10 @@ trait LockableTrait
      */
     public function isLocked()
     {
-        $now = Time::now();
-        $locked = $this->get('locked_time');
-        return $locked && $now->diffInSeconds($locked) < static::getLockTimeout();
+        $now = time();
+        $locked = $this->get('locked_time')->format('U');
+
+        return $locked && abs($now - $locked) < static::getLockTimeout();
     }
 
     /**
