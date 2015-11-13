@@ -52,7 +52,7 @@ class RowLockerBehavior extends Behavior
             $entityClass = $this->_table->entityClass();
 
             $nullExp = clone $exp;
-            $edge = new DateTimeImmutable('@'. time() - $entityClass::getLockTimeout());
+            $edge = new DateTimeImmutable('@'. (time() - $entityClass::getLockTimeout()));
             $or = $exp->or_([
                 $nullExp->isNull($timeCol),
                 $exp->lte($timeCol, $edge, 'datetime')
