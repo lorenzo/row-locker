@@ -3,7 +3,6 @@ namespace RowLocker\Model\Behavior;
 
 use Cake\ORM\Behavior;
 use Cake\ORM\Query;
-use Cake\ORM\Table;
 use Cake\Utility\Hash;
 use DateTimeImmutable;
 use RowLocker\LockableInterface;
@@ -32,7 +31,7 @@ class RowLockerBehavior extends Behavior
      *
      * @return array
      */
-    public function implementedEvents()
+    public function implementedEvents(): array
     {
         return [];
     }
@@ -45,11 +44,11 @@ class RowLockerBehavior extends Behavior
      * @param array|ArrayObject $options The options containing the `lockingUser` key
      * @return Query
      */
-    public function findUnlocked(Query $query, $options)
+    public function findUnlocked(Query $query, $options): Query
     {
         return $query->andWhere(function ($exp) use ($options) {
             $timeCol = $this->_config['locked_time'];
-            $entityClass = $this->_table->entityClass();
+            $entityClass = $this->_table->getEntityClass();
 
             $nullExp = clone $exp;
             $edge = new DateTimeImmutable('@'. (time() - $entityClass::getLockTimeout()));
@@ -75,7 +74,7 @@ class RowLockerBehavior extends Behavior
      * @param array|ArrayObject $options The options containing the `lockingUser` key
      * @return Query
      */
-    public function findAutoLock(Query $query, $options)
+    public function findAutoLock(Query $query, $options): Query
     {
         $by = Hash::get($options, 'lockingUser');
         $session = Hash::get($options, 'lockingSession');
@@ -101,7 +100,7 @@ class RowLockerBehavior extends Behavior
      *
      * @return callable
      */
-    public function lockingMonitor()
+    public function lockingMonitor(): callable
     {
         return function ($callback) {
             $connection = $this->_table->connection();

@@ -2,7 +2,6 @@
 namespace RowLocker\Test\TestCase\Model\Behavior;
 
 use Cake\TestSuite\TestCase;
-use RowLocker\Model\Behavior\RowLockerBehavior;
 use RowLocker\LockableInterface;
 use RowLocker\LockableTrait;
 use Cake\ORM\Entity;
@@ -21,7 +20,7 @@ class RowLockerBehaviorTest extends TestCase
 {
 
     public $fixtures = [
-        'plugin.row_locker.articles'
+        'plugin.RowLocker.Articles'
     ];
 
     /**
@@ -29,7 +28,7 @@ class RowLockerBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->table = TableRegistry::get('Articles', ['entityClass' => TestEntity::class]);
@@ -41,7 +40,7 @@ class RowLockerBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
     }

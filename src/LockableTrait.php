@@ -1,11 +1,10 @@
 <?php
 namespace RowLocker;
 
-use Cake\Database\Type;
+use Cake\Database\TypeFactory;
 
 /**
  * Default implementation for LockableInterface
- *
  */
 trait LockableTrait
 {
@@ -22,7 +21,7 @@ trait LockableTrait
             throw new LockingException('This entity is already locked');
         }
 
-        $this->set('locked_time', Type::build('datetime')->marshal(time()));
+        $this->set('locked_time', TypeFactory::build('datetime')->marshal(time()));
         if ($by !== null) {
             $this->set('locked_by', $by);
         }
