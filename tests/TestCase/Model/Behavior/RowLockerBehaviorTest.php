@@ -2,7 +2,6 @@
 namespace RowLocker\Test\TestCase\Model\Behavior;
 
 use Cake\TestSuite\TestCase;
-use RowLocker\Model\Behavior\RowLockerBehavior;
 use RowLocker\LockableInterface;
 use RowLocker\LockableTrait;
 use Cake\ORM\Entity;

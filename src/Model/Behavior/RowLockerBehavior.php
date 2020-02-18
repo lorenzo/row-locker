@@ -3,7 +3,6 @@ namespace RowLocker\Model\Behavior;
 
 use Cake\ORM\Behavior;
 use Cake\ORM\Query;
-use Cake\ORM\Table;
 use Cake\Utility\Hash;
 use DateTimeImmutable;
 use RowLocker\LockableInterface;
