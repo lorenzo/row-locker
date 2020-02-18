@@ -21,7 +21,7 @@ class RowLockerBehaviorTest extends TestCase
 {
 
     public $fixtures = [
-        'plugin.row_locker.articles'
+        'plugin.RowLocker.Articles'
     ];
 
     /**
