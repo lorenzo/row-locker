@@ -128,4 +128,4 @@ CakePHP. Use the appropriate version by downloading a tag, or checking out the
 correct branch.
 
 * `1.x` tags are compatible with CakePHP 3.x and greater.
-* `2.x` is compatible with CakePHP 4.0.x and is stable to use.
+* `2.x` tags is compatible with CakePHP 4.0.x and is stable to use.
