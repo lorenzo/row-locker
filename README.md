@@ -15,7 +15,7 @@ You can install this plugin into your CakePHP application using [composer](http:
 composer require lorenzo/row-locker
 ```
 
-**Note:** Above will install package compactible with CakePHP4. Please refer to [Versions section]() to install package with CakePHP3.
+**Note:** Above will install package compactible with CakePHP4. Please refer to [Versions section](https://github.com/lorenzo/row-locker#versions) to install package with CakePHP3.
 
 And then enable the plugin:
 
