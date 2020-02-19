@@ -15,6 +15,8 @@ You can install this plugin into your CakePHP application using [composer](http:
 composer require lorenzo/row-locker
 ```
 
+**Note:** Above will install package compactible with CakePHP4. Please refer to [Versions section](https://github.com/lorenzo/row-locker#versions) to install package with CakePHP3.
+
 And then enable the plugin:
 
 ```
@@ -118,3 +120,12 @@ $safeLocker(function () use ($id, $userId, $sessionId) {
 ```
 
 What the locking monitor does is running the inner callable inside a `SERIALIZABLE` transaction.
+
+## Versions
+
+RowLocker has several releases, each compatible with different releases of
+CakePHP. Use the appropriate version by downloading a tag, or checking out the
+correct branch.
+
+* `1.x` tags are compatible with CakePHP 3.x and greater.
+* `2.x` tags is compatible with CakePHP 4.0.x and is stable to use.
