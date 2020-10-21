@@ -66,4 +66,20 @@ class RowLockerBehaviorTest extends TestCase
             ->toArray();
         $this->assertCount(3, $results);
     }
+
+    public function testLockingMonitor()
+    {
+        // SQLite has error
+        $this->expectException('PDOException');
+        $this->expectExceptionMessage('SQLSTATE[HY000]: General error: 1 unrecognized token: "@"');
+
+        $safeLocker = $this->table->lockingMonitor();
+        $safeLocker(function() {
+            $article = $this->table
+                ->find('autoLock', ['lockingUser' => 'lorenzo', 'lockingSession' => 'session-id'])
+                ->firstOrFail();
+
+            $this->assertNotEmpty($article);
+        });
+    }
 }

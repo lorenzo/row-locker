@@ -103,7 +103,7 @@ class RowLockerBehavior extends Behavior
     public function lockingMonitor(): callable
     {
         return function ($callback) {
-            $connection = $this->_table->connection();
+            $connection = $this->_table->getConnection();
             $level = str_replace('-', ' ', $connection->query('SELECT @@session.tx_isolation')->fetchAll()[0][0]);
             $connection->execute('SET TRANSACTION ISOLATION LEVEL SERIALIZABLE')->closeCursor();
 
