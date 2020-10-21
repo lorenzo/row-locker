@@ -67,11 +67,31 @@ class RowLockerBehaviorTest extends TestCase
         $this->assertCount(3, $results);
     }
 
-    public function testLockingMonitor()
+    public function testLockingMonitorForSQLite()
     {
+        if (!($this->table->getConnection()->getDriver() instanceof \Cake\Database\Driver\Sqlite)) {
+            $this->markTestSkipped('test for \Cake\Database\Driver\Sqlite Driver');
+        }
+
         // SQLite has error
         $this->expectException('PDOException');
         $this->expectExceptionMessage('SQLSTATE[HY000]: General error: 1 unrecognized token: "@"');
+
+        $safeLocker = $this->table->lockingMonitor();
+        $safeLocker(function() {
+            $article = $this->table
+                ->find('autoLock', ['lockingUser' => 'lorenzo', 'lockingSession' => 'session-id'])
+                ->firstOrFail();
+
+            $this->assertNotEmpty($article);
+        });
+    }
+
+    public function testLockingMonitorForMySQL()
+    {
+        if (!($this->table->getConnection()->getDriver() instanceof \Cake\Database\Driver\Mysql)) {
+            $this->markTestSkipped('test for \Cake\Database\Driver\Mysql Driver');
+        }
 
         $safeLocker = $this->table->lockingMonitor();
         $safeLocker(function() {
